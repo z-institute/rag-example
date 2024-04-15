@@ -14,7 +14,9 @@ pip install -U langchain-cli
 poetry install
 ```
 
-# Usage of Website loading
+# Usage
+
+Set .env first by copying `.env.example` to `.env` and fill in the necessary information like OPENAI_API_KEY
 
 ```bash
 poetry run python importer\save_notion_html.py
