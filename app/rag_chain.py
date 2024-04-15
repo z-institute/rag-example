@@ -9,11 +9,14 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-
 from langchain_openai import OpenAIEmbeddings
+
+# from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+
 
 load_dotenv()
 embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key = os.environ.get("OPENAI_API_KEY"))
+# embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
 # kitty  = (1,10,0,1,1,3)
 # cat = (1,10,0,1,2,3)
@@ -34,10 +37,10 @@ prompt_template = """
 class RagInput(TypedDict):
     question: str
 
-prompt = PromptTemplate(
-        template=prompt_template, input_variables=["context", "question"]
-    )
 llm = ChatOpenAI()
+# llm = ChatGoogleGenerativeAI(
+#         model="gemini-pro", convert_system_message_to_human=True, streaming=True
+#     )
 
 ANSWER_PROMPT = ChatPromptTemplate.from_template(prompt_template)
 
