@@ -16,7 +16,7 @@ PG_COLLECTION_NAME = "pdf_rag"
 load_dotenv()
 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-vector_store = FAISS.load_local("../all_faiss/ai-gf/faiss_index", embeddings)
+vector_store = FAISS.load_local("../all_faiss/ai-gf/faiss_index", embeddings, allow_dangerous_deserialization=True)
 
 template = """
 Answer given the following context:

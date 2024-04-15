@@ -1,9 +1,15 @@
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+from typing import TypedDict
+from operator import itemgetter
+
 from langchain_community.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import ChatPromptTemplate
+
 from langchain_openai import OpenAIEmbeddings
 
 load_dotenv()
@@ -25,9 +31,22 @@ prompt_template = """
     Answer:
     """
 
+class RagInput(TypedDict):
+    question: str
+
 prompt = PromptTemplate(
         template=prompt_template, input_variables=["context", "question"]
     )
 llm = ChatOpenAI()
 
-final_chain = load_qa_chain(llm, chain_type="stuff", prompt=prompt)
+ANSWER_PROMPT = ChatPromptTemplate.from_template(prompt_template)
+
+final_chain = (
+        {
+            "context": itemgetter("question") | vector_store.as_retriever(),
+            "question": itemgetter("question")
+        }
+        | ANSWER_PROMPT
+        | llm
+        | StrOutputParser()
+).with_types(input_type=RagInput)

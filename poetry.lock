@@ -1770,13 +1770,13 @@ six = "*"
 
 [[package]]
 name = "langserve"
-version = "0.0.39"
+version = "0.0.51"
 description = ""
 optional = false
 python-versions = ">=3.8.1,<4.0.0"
 files = [
-    {file = "langserve-0.0.39-py3-none-any.whl", hash = "sha256:3a8dc3af3c4a18b6867f1a32b75968035ea5ecf5481862fd9d4b51bb06f43e65"},
-    {file = "langserve-0.0.39.tar.gz", hash = "sha256:c5ab2a539e7a008ca017cbe93dd6210aca9f382989906eda307464eac7182a41"},
+    {file = "langserve-0.0.51-py3-none-any.whl", hash = "sha256:e735eef2b6fde7e1514f4be8234b9f0727283e639822ca9c25e8ccc2d24e8492"},
+    {file = "langserve-0.0.51.tar.gz", hash = "sha256:036c0104c512bcc2c2406ae089ef9e7e718c32c39ebf6dcb2212f168c7d09816"},
 ]
 
 [package.dependencies]
@@ -5026,4 +5026,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.12"
-content-hash = "2bf1ca16ba204498725a8463faee6996fa4ea0f1d2e9bd8366fbcb0e6bec9ce9"
+content-hash = "f13c8409fa9fa66bb60ffe5df1466ae12e62f0b4a76d25387b5f08882b4351bc"
