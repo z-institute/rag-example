@@ -1,0 +1,11 @@
+__pycache__
+.env
+dist
+source_docs
+script/export.sh
+test.ipynb
+.idea
+venv
+
+all_faiss
+faiss_index
