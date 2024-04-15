@@ -16,7 +16,8 @@ poetry install
 
 # Usage
 
-Set .env first by copying `.env.example` to `.env` and fill in the necessary information like OPENAI_API_KEY
+1. Set .env first by copying `.env.example` to `.env` and fill in the necessary information like OPENAI_API_KEY
+2. Put markdown files in `source_docs` folder
 
 ```bash
 poetry run python importer\save_notion_html.py
