@@ -36,6 +36,8 @@ then
 poetry run python app/server.py
 ```
 
+then go to http://localhost:8000/rag/playground/
+
 ## Adding packages
 
 ```bash
