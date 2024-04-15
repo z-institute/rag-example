@@ -17,14 +17,20 @@ poetry install
 # Usage of Website loading
 
 ```bash
-python importer\save_notion_html.py
+poetry run python importer\save_notion_html.py
 ```
 
 then
 
 ```bash
-python importer\html_process.py
-python3 importer/load_and_process.py
+poetry run python importer/html_process.py
+poetry run python importer/load_and_process.py
+```
+
+then
+
+```bash
+poetry run python app/server.py
 ```
 
 ## Adding packages
