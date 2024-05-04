@@ -14,29 +14,27 @@ pip install -U langchain-cli
 poetry install
 ```
 
-# Usage
-
-1. Set .env first by copying `.env.example` to `.env` and fill in the necessary information like OPENAI_API_KEY
-2. Put markdown files in `source_docs` folder
+## Usage of Website loading
 
 ```bash
-poetry run python importer\save_notion_html.py
+python importer\save_notion_html.py
 ```
 
 then
 
 ```bash
-poetry run python importer/html_process.py
+python importer\html_process.py
+python3 importer/load_and_process.py
+
 poetry run python importer/load_and_process.py
-```
-
-then
-
-```bash
 poetry run python app/server.py
 ```
 
-then go to http://localhost:8000/rag/playground/
+## Usage of Telegram bot
+
+```bash
+poetry run python bot.py
+```
 
 ## Adding packages
 

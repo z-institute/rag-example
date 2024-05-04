@@ -10,13 +10,15 @@ from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import OpenAIEmbeddings
-
-# from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_core.output_parsers import StrOutputParser
+from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 
 
 load_dotenv()
-embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key = os.environ.get("OPENAI_API_KEY"))
-# embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+embeddings = HuggingFaceInferenceAPIEmbeddings(
+    api_key=os.environ.get("HF_TOKEN"), model_name="sentence-transformers/all-MiniLM-l6-v2"
+)
+# embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key = os.environ.get("OPENAI_API_KEY"))
 
 # kitty  = (1,10,0,1,1,3)
 # cat = (1,10,0,1,2,3)
@@ -25,9 +27,16 @@ embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key = o
 # vector_store = FAISS.load_local("faiss_index", embeddings)
 vector_store = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
+# prompt_template = """
+#     Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
+#     provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+#     Context:\n {context}?\n
+#     Question: \n{question}\n
+
+#     Answer:
+#     """
 prompt_template = """
-    Answer the question as detailed as possible from the provided context, make sure to provide all the details, if the answer is not in
-    provided context just say, "answer is not available in the context", don't provide the wrong answer\n\n
+    Answer the question as detailed as possible from the provided context, make sure to provide all the details\n\n
     Context:\n {context}?\n
     Question: \n{question}\n
 
@@ -43,6 +52,8 @@ llm = ChatOpenAI()
 #     )
 
 ANSWER_PROMPT = ChatPromptTemplate.from_template(prompt_template)
+
+# print(ANSWER_PROMPT)
 
 final_chain = (
         {
