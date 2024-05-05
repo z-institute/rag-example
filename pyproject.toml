@@ -26,6 +26,7 @@ langchain-google-genai = "^1.0.2"
 reportlab = "^4.1.0"
 unstructured = {extras = ["all-docs"], version = "^0.12.2"}
 gpt4all = "^2.6.0"
+flask = "^3.0.3"
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.15"

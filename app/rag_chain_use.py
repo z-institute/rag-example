@@ -1,13 +1,11 @@
 import os
+from operator import itemgetter
+from typing import TypedDict
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-from typing import TypedDict
-from operator import itemgetter
-
 from langchain_community.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.output_parsers import StrOutputParser
@@ -43,13 +41,13 @@ prompt_template = """
     Answer:
     """
 
+# template = PromptTemplate(
+#         template=prompt_template, input_variables=["context", "question"]
+#     )
+llm = ChatOpenAI()
+
 class RagInput(TypedDict):
     question: str
-
-llm = ChatOpenAI()
-# llm = ChatGoogleGenerativeAI(
-#         model="gemini-pro", convert_system_message_to_human=True, streaming=True
-#     )
 
 ANSWER_PROMPT = ChatPromptTemplate.from_template(prompt_template)
 
@@ -64,3 +62,44 @@ final_chain = (
         | llm
         | StrOutputParser()
 ).with_types(input_type=RagInput)
+
+ticket_name = "甲子"
+ai_response = final_chain.invoke({"question": 
+"""請回答""" + ticket_name + """籤的內容，格式為：
+籤詩：
+白話內容：
+凡事
+作事
+家事
+家運
+婚姻
+求兒
+六甲
+求財
+功名
+歲君
+治病
+出外
+經商
+來人
+行舟
+移居
+失物
+求雨
+官事
+六畜
+耕作
+築室
+墳墓
+討海
+作塭
+魚苗
+月令
+尋人
+遠信"""
+, 
+"input_documents": vector_store.similarity_search(ticket_name)}
+)
+
+print(ai_response)
+
