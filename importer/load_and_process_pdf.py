@@ -33,12 +33,12 @@ for doc in docs:
     for txt in doc.page_content:
         html_header_splits += txt
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=30)
-chunks = text_splitter.split_text(html_header_splits)
+# text_splitter = RecursiveCharacterTextSplitter(chunk_size=250, chunk_overlap=30)
 
-# text_splitter = SemanticChunker(
-#     embeddings, breakpoint_threshold_type="percentile"
-# )
+
+text_splitter = SemanticChunker(
+    embeddings
+)
 
 # text_splitter = SemanticChunker(
 #     embeddings
@@ -46,6 +46,10 @@ chunks = text_splitter.split_text(html_header_splits)
 # print(text_splitter)
 # chunks = text_splitter.split_documents(docs)
 # print(len(chunks))
+
+chunks = text_splitter.split_text(html_header_splits)
+print(len(chunks))
+print(chunks)
 
 db = FAISS.from_texts(chunks, embeddings)
 db.save_local("faiss_index")

@@ -25,6 +25,13 @@ loader = DirectoryLoader(
 )
 docs = loader.load()
 
+
+# dog cat car
+# dog: (0, 1, 2)
+# cat: (0, 1, 3)
+# car: (2, 10, 100)
+
+# input: taiwan -> (111, 1000, 100)
 embeddings = OpenAIEmbeddings(model='text-embedding-ada-002', )
 
 headers_to_split_on = [

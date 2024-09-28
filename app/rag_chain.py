@@ -36,7 +36,7 @@ vector_store = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deser
 #     Answer:
 #     """
 prompt_template = """
-    Answer the question as detailed as possible from the provided context, make sure to provide all the details\n\n
+    Answer the question as detailed as possible from the provided context, make sure to provide all the details, answer i don't know if the answer is not in the context\n\n
     Context:\n {context}?\n
     Question: \n{question}\n
 
@@ -64,3 +64,6 @@ final_chain = (
         | llm
         | StrOutputParser()
 ).with_types(input_type=RagInput)
+
+# lang chain
+# output = module1 | module2 | module3 | module4 
