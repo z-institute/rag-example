@@ -46,7 +46,7 @@ prompt_template = """
 class RagInput(TypedDict):
     question: str
 
-llm = ChatOpenAI()
+llm = ChatOpenAI(model="gpt-4o")
 # llm = ChatGoogleGenerativeAI(
 #         model="gemini-pro", convert_system_message_to_human=True, streaming=True
 #     )

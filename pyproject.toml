@@ -28,6 +28,7 @@ unstructured = {extras = ["all-docs"], version = "^0.12.2"}
 gpt4all = "^2.6.0"
 flask = "^3.0.3"
 python-telegram-bot = "^21.6"
+nltk = "^3.9.1"
 
 [tool.poetry.group.dev.dependencies]
 langchain-cli = ">=0.0.15"

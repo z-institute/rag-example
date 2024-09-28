@@ -14,6 +14,8 @@ import nltk
 load_dotenv()
 
 nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('averaged_perceptron_tagger_eng')
 
 loader = DirectoryLoader(
     os.path.relpath("source_docs"),
